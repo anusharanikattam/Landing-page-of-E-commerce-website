@@ -1,4 +1,3 @@
-
 /* ==========================
    PRELOADER
 ========================== */
@@ -6,16 +5,20 @@
 window.addEventListener("load", () => {
     const preloader = document.getElementById("preloader");
 
-    if (preloader) {
-        preloader.style.display = "none";
-    }
+    setTimeout(() => {
+        if (preloader) {
+            preloader.style.display = "none";
+        }
+    }, 1000);
 
     renderProducts();
+    renderCart();
+    renderWishlist();
     updateCounts();
 });
 
 /* ==========================
-   DATA
+   PRODUCTS DATA
 ========================== */
 
 const products = [
@@ -24,176 +27,160 @@ id:1,
 name:"Running Shoes",
 price:1999,
 category:"fashion",
-image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"
+image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80",
+discount:"20%"
 },
 {
 id:2,
 name:"Smart Watch",
 price:2999,
 category:"electronics",
-image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80",
+discount:"15%"
 },
 {
 id:3,
 name:"T-Shirt",
 price:799,
 category:"fashion",
-image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab"
+image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80",
+discount:"10%"
 },
 {
 id:4,
 name:"Wireless Headphones",
 price:2499,
 category:"electronics",
-image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e"
+image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80",
+discount:"25%"
 },
 {
 id:5,
 name:"Beauty Cream",
 price:499,
 category:"beauty",
-image:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9"
+image:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=600&q=80",
+discount:"12%"
 },
 {
 id:6,
 name:"Sofa Cushion",
 price:699,
 category:"home",
-image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80",
+discount:"18%"
 },
 {
 id:7,
 name:"Laptop",
 price:54999,
 category:"electronics",
-image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853"
+image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=600&q=80",
+discount:"30%"
 },
 {
 id:8,
 name:"Backpack",
 price:1299,
 category:"fashion",
-image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62"
+image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80",
+discount:"20%"
 },
 {
 id:9,
 name:"Lipstick",
 price:399,
 category:"beauty",
-image:"https://images.unsplash.com/photo-1586495777744-4413f21062fa"
+image:"https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=600&q=80",
+discount:"15%"
 },
 {
 id:10,
 name:"Coffee Mug",
 price:299,
 category:"home",
-image:
-<img src="https://images.unsplash.com/photo-1514228742587-6b1558fcf93a" alt="Coffee Mug"></img>
+image:"https://images.unsplash.com/photo-1514228742587-6b1558fcf93a?auto=format&fit=crop&w=600&q=80",
+discount:"10%"
 },
 {
 id:11,
 name:"Gaming Mouse",
 price:999,
 category:"electronics",
-image:"https://images.unsplash.com/photo-1527814050087-3793815479db"
+image:"https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=600&q=80",
+discount:"15%"
 },
 {
 id:12,
 name:"Denim Jacket",
 price:1899,
 category:"fashion",
-image:"https://images.unsplash.com/photo-1521223890158-f9f7c3d5d504"
+image:"https://images.unsplash.com/photo-1521223890158-f9f7c3d5d504?auto=format&fit=crop&w=600&q=80",
+discount:"22%"
 },
 {
 id:13,
 name:"Face Wash",
 price:299,
 category:"beauty",
-image:"https://images.unsplash.com/photo-1556228578-8c89e6adf883"
+image:"https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=600&q=80",
+discount:"10%"
 },
 {
 id:14,
 name:"Table Lamp",
 price:899,
 category:"home",
-image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+image:"https://images.unsplash.com/photo-1517991104123-1d56a6e81ed9?auto=format&fit=crop&w=600&q=80",
+discount:"18%"
 },
 {
 id:15,
 name:"Bluetooth Speaker",
 price:1599,
 category:"electronics",
-image:"https://images.unsplash.com/photo-1512446816042-444d64126727"
+image:"https://images.unsplash.com/photo-1512446816042-444d64126727?auto=format&fit=crop&w=600&q=80",
+discount:"25%"
 },
 {
 id:16,
 name:"Sneakers",
 price:1799,
 category:"fashion",
-image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"
+image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80",
+discount:"20%"
 },
 {
 id:17,
 name:"Perfume",
 price:999,
 category:"beauty",
-image:"https://images.unsplash.com/photo-1541643600914-78b084683601"
+image:"https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80",
+discount:"12%"
 },
 {
 id:18,
 name:"Wall Clock",
 price:799,
 category:"home",
-image:"https://images.unsplash.com/photo-1509042239860-f550ce710b93"
+image:"https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80",
+discount:"15%"
 },
 {
 id:19,
 name:"Tablet",
 price:22999,
 category:"electronics",
-image:"https://images.unsplash.com/photo-1546054454-aa26e2b734c7"
+image:"https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&w=600&q=80",
+discount:"28%"
 },
 {
 id:20,
 name:"Handbag",
 price:1499,
 category:"fashion",
-image:"https://images.unsplash.com/photo-1584917865442-de89df76afd3"
-},
-{
-id:21,
-name:"Hair Serum",
-price:599,
-category:"beauty",
-image:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9"
-},
-{
-id:22,
-name:"Plant Pot",
-price:499,
-category:"home",
-image:"https://images.unsplash.com/photo-1485955900006-10f4d324d411"
-},
-{
-id:23,
-name:"Keyboard",
-price:1299,
-category:"electronics",
-image:"https://images.unsplash.com/photo-1517336714739-489689fd1ca8"
-},
-{
-id:24,
-name:"Jeans",
-price:1599,
-category:"fashion",
-image:"https://images.unsplash.com/photo-1542272604-787c3835535d"
-},
-{
-id:25,
-name:"Skin Care Kit",
-price:1299,
-category:"beauty",
-image:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9"
+image:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80",
+discount:"18%"
 }
 ];
 
@@ -205,51 +192,57 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
 /* ==========================
-   RENDER PRODUCTS
+   PRODUCT RENDER
 ========================== */
 
 const container = document.getElementById("productsContainer");
 
 function renderProducts(data = products){
 
-    container.innerHTML = "";
+container.innerHTML = "";
 
-    data.forEach(product => {
+data.forEach(product => {
 
-        container.innerHTML += `
-        <div class="product-card">
+container.innerHTML += `
+<div class="product-card">
 
-            <img src="${product.image}" alt="${product.name}">
+<span class="discount">
+${product.discount} OFF
+</span>
 
-            <div class="product-info">
+<img src="${product.image}" alt="${product.name}">
 
-                <h3>${product.name}</h3>
+<div class="product-info">
 
-                <p class="price">₹${product.price}</p>
+<h3>${product.name}</h3>
 
-                <div class="product-actions">
+<div class="rating">★★★★★</div>
 
-                    <button class="cart-btn"
-                    onclick="addToCart(${product.id})">
-                    Cart
-                    </button>
+<p class="price">₹${product.price}</p>
 
-                    <button class="wish-btn"
-                    onclick="addToWishlist(${product.id})">
-                    ❤
-                    </button>
+<div class="product-actions">
 
-                    <button onclick="openModal(${product.id})">
-                    View
-                    </button>
+<button class="cart-btn"
+onclick="addToCart(${product.id})">
+Cart
+</button>
 
-                </div>
+<button class="wish-btn"
+onclick="addToWishlist(${product.id})">
+❤
+</button>
 
-            </div>
+<button onclick="openModal(${product.id})">
+View
+</button>
 
-        </div>
-        `;
-    });
+</div>
+
+</div>
+
+</div>
+`;
+});
 }
 
 /* ==========================
@@ -258,46 +251,124 @@ function renderProducts(data = products){
 
 function addToCart(id){
 
-    const item = products.find(p => p.id === id);
+const product =
+products.find(p => p.id === id);
 
-    cart.push(item);
+const existing =
+cart.find(item => item.id === id);
 
-    localStorage.setItem("cart",
-    JSON.stringify(cart));
+if(existing){
+existing.qty++;
+}else{
+cart.push({...product, qty:1});
+}
 
-    updateCounts();
-    renderCart();
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
 
-    showToast("Added to Cart");
+renderCart();
+updateCounts();
+showToast("Added To Cart");
+}
+
+function changeQty(id,type){
+
+const item =
+cart.find(i => i.id === id);
+
+if(type === "plus"){
+item.qty++;
+}
+
+if(type === "minus"){
+item.qty--;
+
+if(item.qty <= 0){
+removeCart(id);
+return;
+}
+}
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+renderCart();
+updateCounts();
+}
+
+function removeCart(id){
+
+cart = cart.filter(
+item => item.id !== id
+);
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+renderCart();
+updateCounts();
+showToast("Item Removed");
 }
 
 function renderCart(){
 
-    const cartItems =
-    document.getElementById("cartItems");
+const cartItems =
+document.getElementById("cartItems");
 
-    const total =
-    document.getElementById("cartTotal");
+const total =
+document.getElementById("cartTotal");
 
-    if(!cartItems) return;
+if(!cartItems) return;
 
-    cartItems.innerHTML = "";
+cartItems.innerHTML = "";
 
-    let sum = 0;
+if(cart.length === 0){
 
-    cart.forEach(item => {
+cartItems.innerHTML =
+"<p>Your Cart Is Empty</p>";
 
-        sum += item.price;
+total.textContent = 0;
+return;
+}
 
-        cartItems.innerHTML += `
-        <div style="margin-bottom:15px">
-            <h4>${item.name}</h4>
-            <p>₹${item.price}</p>
-        </div>
-        `;
-    });
+let sum = 0;
 
-    total.textContent = sum;
+cart.forEach(item => {
+
+sum += item.price * item.qty;
+
+cartItems.innerHTML += `
+<div style="margin-bottom:15px;border-bottom:1px solid #ddd;padding-bottom:10px">
+
+<h4>${item.name}</h4>
+
+<p>₹${item.price}</p>
+
+<div style="display:flex;gap:10px;align-items:center">
+
+<button onclick="changeQty(${item.id},'minus')">-</button>
+
+<span>${item.qty}</span>
+
+<button onclick="changeQty(${item.id},'plus')">+</button>
+
+<button onclick="removeCart(${item.id})">
+Remove
+</button>
+
+</div>
+
+</div>
+`;
+});
+
+total.textContent = sum;
 }
 
 /* ==========================
@@ -306,39 +377,50 @@ function renderCart(){
 
 function addToWishlist(id){
 
-    const item = products.find(p => p.id === id);
+const item =
+products.find(p => p.id === id);
 
-    wishlist.push(item);
+if(
+wishlist.some(
+product => product.id === id
+)
+){
+showToast("Already Added");
+return;
+}
 
-    localStorage.setItem(
-        "wishlist",
-        JSON.stringify(wishlist)
-    );
+wishlist.push(item);
 
-    updateCounts();
-    renderWishlist();
+localStorage.setItem(
+"wishlist",
+JSON.stringify(wishlist)
+);
 
-    showToast("Added to Wishlist");
+renderWishlist();
+updateCounts();
+
+showToast("Added To Wishlist");
 }
 
 function renderWishlist(){
 
-    const wishlistItems =
-    document.getElementById("wishlistItems");
+const wishlistItems =
+document.getElementById("wishlistItems");
 
-    if(!wishlistItems) return;
+wishlistItems.innerHTML = "";
 
-    wishlistItems.innerHTML = "";
+wishlist.forEach(item => {
 
-    wishlist.forEach(item => {
+wishlistItems.innerHTML += `
+<div style="margin-bottom:15px">
 
-        wishlistItems.innerHTML += `
-        <div style="margin-bottom:15px">
-            <h4>${item.name}</h4>
-            <p>₹${item.price}</p>
-        </div>
-        `;
-    });
+<h4>${item.name}</h4>
+
+<p>₹${item.price}</p>
+
+</div>
+`;
+});
 }
 
 /* ==========================
@@ -347,45 +429,14 @@ function renderWishlist(){
 
 function updateCounts(){
 
-    document.getElementById(
-    "cartCount").textContent = cart.length;
+document.getElementById(
+"cartCount"
+).textContent = cart.length;
 
-    document.getElementById(
-    "wishlistCount").textContent =
-    wishlist.length;
+document.getElementById(
+"wishlistCount"
+).textContent = wishlist.length;
 }
-
-/* ==========================
-   SIDEBARS
-========================== */
-
-const cartBtn =
-document.getElementById("cartBtn");
-
-const wishlistBtn =
-document.getElementById("wishlistBtn");
-
-const cartSidebar =
-document.getElementById("cartSidebar");
-
-const wishlistSidebar =
-document.getElementById("wishlistSidebar");
-
-cartBtn.addEventListener("click", () => {
-
-    cartSidebar.classList.toggle("active");
-    wishlistSidebar.classList.remove("active");
-
-    renderCart();
-});
-
-wishlistBtn.addEventListener("click", () => {
-
-    wishlistSidebar.classList.toggle("active");
-    cartSidebar.classList.remove("active");
-
-    renderWishlist();
-});
 
 /* ==========================
    MODAL
@@ -396,39 +447,34 @@ document.getElementById("productModal");
 
 function openModal(id){
 
-    const item =
-    products.find(p => p.id === id);
+const item =
+products.find(p => p.id === id);
 
-    document.getElementById(
-    "modalImage").src = item.image;
+document.getElementById(
+"modalImage"
+).src = item.image;
 
-    document.getElementById(
-    "modalTitle").textContent =
-    item.name;
+document.getElementById(
+"modalTitle"
+).textContent = item.name;
 
-    document.getElementById(
-    "modalPrice").textContent =
-    "₹" + item.price;
+document.getElementById(
+"modalPrice"
+).textContent =
+"₹" + item.price;
 
-    modal.style.display = "block";
+modal.style.display = "block";
 
-    document.getElementById(
-    "modalAddCart").onclick =
-    () => addToCart(id);
+document.getElementById(
+"modalAddCart"
+).onclick = () =>
+addToCart(id);
 }
 
 document.getElementById(
-"closeModal").onclick = () => {
-
-    modal.style.display = "none";
-};
-
-window.onclick = e => {
-
-    if(e.target === modal){
-
-        modal.style.display = "none";
-    }
+"closeModal"
+).onclick = () => {
+modal.style.display = "none";
 };
 
 /* ==========================
@@ -436,18 +482,17 @@ window.onclick = e => {
 ========================== */
 
 document.getElementById(
-"searchInput").addEventListener(
-"keyup",
-e => {
+"searchInput"
+).addEventListener("keyup", e => {
 
 const value =
 e.target.value.toLowerCase();
 
 const filtered =
 products.filter(product =>
-product.name
-.toLowerCase()
-.includes(value));
+product.name.toLowerCase()
+.includes(value)
+);
 
 renderProducts(filtered);
 
@@ -461,11 +506,13 @@ document.querySelectorAll(
 ".filter-btn"
 ).forEach(btn => {
 
-btn.addEventListener("click", () => {
+btn.addEventListener(
+"click",
+() => {
 
-document.querySelectorAll(
-".filter-btn"
-).forEach(b =>
+document
+.querySelectorAll(".filter-btn")
+.forEach(b =>
 b.classList.remove("active")
 );
 
@@ -475,22 +522,19 @@ const category =
 btn.dataset.category;
 
 if(category === "all"){
-
-renderProducts(products);
-
+renderProducts();
 }else{
 
-const filtered =
-products.filter(product =>
+renderProducts(
+products.filter(
+product =>
 product.category === category
+)
 );
-
-renderProducts(filtered);
 
 }
 
 });
-
 });
 
 /* ==========================
@@ -500,21 +544,18 @@ renderProducts(filtered);
 const slides =
 document.querySelectorAll(".slide");
 
-let currentSlide = 0;
+let current = 0;
 
 setInterval(() => {
 
-slides[currentSlide]
+slides[current]
 .classList.remove("active");
 
-currentSlide++;
+current =
+(current + 1) %
+slides.length;
 
-if(currentSlide >= slides.length){
-
-currentSlide = 0;
-}
-
-slides[currentSlide]
+slides[current]
 .classList.add("active");
 
 }, 4000);
@@ -523,7 +564,7 @@ slides[currentSlide]
    DARK MODE
 ========================== */
 
-const themeToggle =
+const themeBtn =
 document.getElementById(
 "themeToggle"
 );
@@ -532,14 +573,12 @@ if(
 localStorage.getItem("theme")
 === "dark"
 ){
-
 document.body.classList.add(
 "dark-mode"
 );
-
 }
 
-themeToggle.addEventListener(
+themeBtn.addEventListener(
 "click",
 () => {
 
@@ -547,47 +586,164 @@ document.body.classList.toggle(
 "dark-mode"
 );
 
-if(
+localStorage.setItem(
+"theme",
 document.body.classList.contains(
 "dark-mode"
 )
-){
-
-localStorage.setItem(
-"theme",
-"dark"
+? "dark"
+: "light"
 );
-
-}else{
-
-localStorage.setItem(
-"theme",
-"light"
-);
-
-}
 
 });
-
 /* ==========================
    MOBILE MENU
 ========================== */
 
-const menuBtn =
-document.getElementById("menuBtn");
+document.getElementById(
+"menuBtn"
+).addEventListener("click", () => {
 
-const navbar =
-document.getElementById("navbar");
-
-menuBtn.addEventListener(
-"click",
-() => {
-
-navbar.classList.toggle(
-"active"
-);
+document.getElementById(
+"navbar"
+).classList.toggle("active");
 
 });
+
+/* ==========================
+   SIDEBARS
+========================== */
+
+document.getElementById(
+"cartBtn"
+).addEventListener("click", () => {
+
+document.getElementById(
+"cartSidebar"
+).classList.toggle("active");
+
+document.getElementById(
+"wishlistSidebar"
+).classList.remove("active");
+
+});
+
+document.getElementById(
+"wishlistBtn"
+).addEventListener("click", () => {
+
+document.getElementById(
+"wishlistSidebar"
+).classList.toggle("active");
+
+document.getElementById(
+"cartSidebar"
+).classList.remove("active");
+
+});
+
+/* ==========================
+   COUNTDOWN TIMER
+========================== */
+
+const endDate =
+new Date().getTime() +
+7 * 24 * 60 * 60 * 1000;
+
+setInterval(() => {
+
+const now =
+new Date().getTime();
+
+const distance =
+endDate - now;
+
+document.getElementById(
+"days"
+).textContent =
+Math.floor(
+distance /
+(1000*60*60*24)
+);
+
+document.getElementById(
+"hours"
+).textContent =
+Math.floor(
+(distance %
+(1000*60*60*24))
+/
+(1000*60*60)
+);
+
+document.getElementById(
+"minutes"
+).textContent =
+Math.floor(
+(distance %
+(1000*60*60))
+/
+(1000*60)
+);
+
+document.getElementById(
+"seconds"
+).textContent =
+Math.floor(
+(distance %
+(1000*60))
+/
+1000
+);
+
+},1000);
+
+/* ==========================
+   CHECKOUT
+========================== */
+
+const checkoutModal =
+document.getElementById(
+"checkoutModal"
+);
+
+document.getElementById(
+"checkoutBtn"
+).onclick = () => {
+
+checkoutModal.style.display =
+"block";
+};
+
+document.getElementById(
+"closeCheckout"
+).onclick = () => {
+
+checkoutModal.style.display =
+"none";
+};
+
+document.getElementById(
+"placeOrderBtn"
+).onclick = () => {
+
+cart = [];
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+renderCart();
+updateCounts();
+
+checkoutModal.style.display =
+"none";
+
+showToast(
+"Order Placed Successfully"
+);
+};
 
 /* ==========================
    TOAST
@@ -603,10 +759,8 @@ toast.textContent = message;
 toast.classList.add("show");
 
 setTimeout(() => {
-
 toast.classList.remove("show");
-
-}, 2500);
+},2500);
 
 }
 
@@ -614,12 +768,9 @@ toast.classList.remove("show");
    NEWSLETTER
 ========================== */
 
-const newsletter =
 document.getElementById(
 "newsletterForm"
-);
-
-newsletter.addEventListener(
+).addEventListener(
 "submit",
 e => {
 
@@ -629,7 +780,7 @@ showToast(
 "Newsletter Subscribed"
 );
 
-newsletter.reset();
+e.target.reset();
 
 });
 
@@ -637,12 +788,9 @@ newsletter.reset();
    CONTACT FORM
 ========================== */
 
-const contactForm =
 document.getElementById(
 "contactForm"
-);
-
-contactForm.addEventListener(
+).addEventListener(
 "submit",
 e => {
 
@@ -652,7 +800,7 @@ showToast(
 "Message Sent Successfully"
 );
 
-contactForm.reset();
+e.target.reset();
 
 });
 
@@ -660,7 +808,7 @@ contactForm.reset();
    SCROLL TOP
 ========================== */
 
-const scrollTopBtn =
+const scrollBtn =
 document.getElementById(
 "scrollTop"
 );
@@ -670,19 +818,16 @@ window.addEventListener(
 () => {
 
 if(window.scrollY > 300){
-
-scrollTopBtn.style.display =
+scrollBtn.style.display =
 "block";
-
 }else{
-
-scrollTopBtn.style.display =
+scrollBtn.style.display =
 "none";
 }
 
 });
 
-scrollTopBtn.addEventListener(
+scrollBtn.addEventListener(
 "click",
 () => {
 
@@ -692,11 +837,3 @@ behavior:"smooth"
 });
 
 });
-
-/* ==========================
-   INITIAL LOAD
-========================== */
-
-renderCart();
-renderWishlist();
-updateCounts();

@@ -2,23 +2,26 @@
 /* =========================
    GOOGLE FONT
 ========================= */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 :root{
     --primary:#4f46e5;
     --secondary:#6366f1;
+    --success:#22c55e;
+    --danger:#ef4444;
     --dark:#111827;
     --light:#ffffff;
     --gray:#f3f4f6;
-    --text:#333333;
-    --shadow:0 5px 15px rgba(0,0,0,0.1);
+    --text:#333;
+    --shadow:0 8px 25px rgba(0,0,0,.08);
+    --radius:15px;
 }
 
 .dark-mode{
     --light:#111827;
     --gray:#1f2937;
     --text:#ffffff;
-    --shadow:0 5px 15px rgba(255,255,255,0.08);
+    --shadow:0 8px 25px rgba(255,255,255,.05);
 }
 
 /* =========================
@@ -37,6 +40,12 @@ body{
     background:var(--light);
     color:var(--text);
     overflow-x:hidden;
+    transition:.3s;
+}
+
+img{
+    max-width:100%;
+    display:block;
 }
 
 /* =========================
@@ -47,15 +56,15 @@ body{
     position:fixed;
     inset:0;
     background:#fff;
+    z-index:9999;
     display:flex;
     justify-content:center;
     align-items:center;
-    z-index:9999;
 }
 
 .loader{
-    width:60px;
-    height:60px;
+    width:65px;
+    height:65px;
     border:6px solid #ddd;
     border-top:6px solid var(--primary);
     border-radius:50%;
@@ -72,26 +81,22 @@ body{
    HEADER
 ========================= */
 
-header{
+.header{
     position:sticky;
     top:0;
     z-index:1000;
     background:var(--light);
-    box-shadow:var(--shadow);
     padding:15px 8%;
     display:flex;
     justify-content:space-between;
     align-items:center;
+    box-shadow:var(--shadow);
 }
 
 .logo{
-    font-size:24px;
+    font-size:28px;
     font-weight:700;
     color:var(--primary);
-}
-
-.logo i{
-    margin-right:8px;
 }
 
 nav{
@@ -103,6 +108,7 @@ nav a{
     text-decoration:none;
     color:var(--text);
     font-weight:500;
+    transition:.3s;
 }
 
 nav a:hover{
@@ -116,11 +122,11 @@ nav a:hover{
 
 .header-icons button{
     border:none;
-    cursor:pointer;
     background:var(--primary);
     color:#fff;
-    padding:10px;
-    border-radius:8px;
+    padding:10px 12px;
+    border-radius:10px;
+    cursor:pointer;
     position:relative;
 }
 
@@ -128,12 +134,12 @@ nav a:hover{
     position:absolute;
     top:-8px;
     right:-8px;
+    width:20px;
+    height:20px;
+    border-radius:50%;
     background:red;
     color:#fff;
     font-size:11px;
-    width:18px;
-    height:18px;
-    border-radius:50%;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -149,16 +155,15 @@ nav a:hover{
 
 .hero{
     position:relative;
-    height:85vh;
+    height:90vh;
     overflow:hidden;
 }
 
 .slide{
     position:absolute;
-    width:100%;
-    height:100%;
+    inset:0;
     opacity:0;
-    transition:.8s;
+    transition:1s;
 }
 
 .slide.active{
@@ -171,16 +176,24 @@ nav a:hover{
     object-fit:cover;
 }
 
+.slide::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.45);
+}
+
 .hero-content{
     position:absolute;
     top:50%;
     left:8%;
     transform:translateY(-50%);
+    z-index:10;
     color:#fff;
 }
 
 .hero-content h1{
-    font-size:55px;
+    font-size:60px;
     margin-bottom:15px;
 }
 
@@ -191,11 +204,16 @@ nav a:hover{
 
 .btn{
     display:inline-block;
-    padding:12px 25px;
+    padding:14px 30px;
     background:var(--primary);
     color:#fff;
     text-decoration:none;
-    border-radius:8px;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
 }
 
 /* =========================
@@ -208,29 +226,29 @@ nav a:hover{
 
 #searchInput{
     width:100%;
-    padding:15px;
+    padding:16px;
+    border-radius:12px;
     border:2px solid #ddd;
-    border-radius:10px;
     font-size:16px;
 }
 
 /* =========================
-   FILTER BUTTONS
+   FILTERS
 ========================= */
 
 .filters{
-    padding:0 8% 30px;
+    padding:0 8% 40px;
     display:flex;
+    gap:12px;
     flex-wrap:wrap;
-    gap:10px;
 }
 
 .filter-btn{
     border:none;
-    background:#e5e7eb;
-    padding:10px 18px;
+    padding:10px 20px;
+    border-radius:10px;
     cursor:pointer;
-    border-radius:8px;
+    background:#e5e7eb;
 }
 
 .filter-btn.active{
@@ -239,20 +257,20 @@ nav a:hover{
 }
 
 /* =========================
-   SECTION TITLE
+   TITLES
 ========================= */
 
 .section-title{
     text-align:center;
-    margin:60px 0 30px;
+    margin:70px 0 30px;
 }
 
 .section-title h2{
-    font-size:35px;
+    font-size:38px;
 }
 
 /* =========================
-   PRODUCT GRID
+   PRODUCTS
 ========================= */
 
 .products-container{
@@ -264,20 +282,32 @@ nav a:hover{
 
 .product-card{
     background:var(--gray);
-    border-radius:15px;
+    border-radius:var(--radius);
     overflow:hidden;
     box-shadow:var(--shadow);
-    transition:.3s;
+    transition:.4s;
+    position:relative;
 }
 
 .product-card:hover{
-    transform:translateY(-8px);
+    transform:translateY(-10px);
 }
 
 .product-card img{
     width:100%;
     height:250px;
     object-fit:cover;
+}
+
+.discount{
+    position:absolute;
+    top:12px;
+    left:12px;
+    background:red;
+    color:#fff;
+    padding:5px 10px;
+    border-radius:6px;
+    font-size:12px;
 }
 
 .product-info{
@@ -288,14 +318,15 @@ nav a:hover{
     margin-bottom:10px;
 }
 
-.product-info p{
-    margin-bottom:15px;
-}
-
 .price{
     color:var(--primary);
+    font-size:22px;
     font-weight:700;
-    font-size:20px;
+}
+
+.rating{
+    color:gold;
+    margin:10px 0;
 }
 
 .product-actions{
@@ -318,12 +349,12 @@ nav a:hover{
 }
 
 .wish-btn{
-    background:#ef4444;
+    background:var(--danger);
     color:#fff;
 }
 
 /* =========================
-   BEST SELLERS
+   CARDS
 ========================= */
 
 .best-sellers,
@@ -359,21 +390,51 @@ nav a:hover{
 }
 
 /* =========================
-   SPECIAL OFFERS
+   COUNTDOWN
+========================= */
+
+.countdown-section{
+    padding:70px 8%;
+    text-align:center;
+}
+
+.countdown{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.countdown div{
+    background:var(--primary);
+    color:#fff;
+    padding:25px;
+    border-radius:15px;
+    min-width:110px;
+}
+
+.countdown span{
+    font-size:35px;
+    font-weight:700;
+}
+
+/* =========================
+   OFFERS
 ========================= */
 
 .offers-container{
     padding:0 8%;
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+    gap:25px;
 }
 
 .offer-box{
     background:linear-gradient(135deg,var(--primary),var(--secondary));
     color:#fff;
-    text-align:center;
     padding:40px;
+    text-align:center;
     border-radius:15px;
 }
 
@@ -381,31 +442,34 @@ nav a:hover{
    MODAL
 ========================= */
 
-.modal{
+.modal,
+.checkout-modal{
     display:none;
     position:fixed;
     inset:0;
     background:rgba(0,0,0,.7);
-    z-index:2000;
+    z-index:5000;
 }
 
-.modal-content{
+.modal-content,
+.checkout-content{
     width:90%;
     max-width:500px;
     background:#fff;
-    padding:20px;
+    padding:25px;
     border-radius:15px;
     margin:5% auto;
-    text-align:center;
     position:relative;
+    text-align:center;
 }
 
 .modal-content img{
-    width:100%;
     border-radius:10px;
+    margin-bottom:15px;
 }
 
-#closeModal{
+#closeModal,
+#closeCheckout{
     position:absolute;
     right:20px;
     top:15px;
@@ -422,14 +486,14 @@ nav a:hover{
     position:fixed;
     top:0;
     right:-400px;
-    width:350px;
+    width:380px;
     height:100vh;
     background:#fff;
-    box-shadow:-5px 0 20px rgba(0,0,0,.1);
     padding:20px;
     transition:.4s;
-    z-index:3000;
+    z-index:6000;
     overflow-y:auto;
+    box-shadow:-5px 0 20px rgba(0,0,0,.1);
 }
 
 .cart-sidebar.active,
@@ -437,15 +501,30 @@ nav a:hover{
     right:0;
 }
 
+.cart-footer{
+    margin-top:20px;
+}
+
+.cart-footer button{
+    width:100%;
+    margin-top:15px;
+    border:none;
+    background:var(--success);
+    color:#fff;
+    padding:14px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
 /* =========================
-   TESTIMONIALS
+   REVIEWS
 ========================= */
 
 .testimonial-container{
     padding:0 8%;
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+    gap:25px;
 }
 
 .testimonial{
@@ -456,8 +535,8 @@ nav a:hover{
 }
 
 .testimonial h4{
-    margin-top:15px;
-    color:var(--primary);
+    color:gold;
+    margin:10px 0;
 }
 
 /* =========================
@@ -466,27 +545,24 @@ nav a:hover{
 
 .newsletter{
     margin-top:70px;
-    text-align:center;
     padding:70px 8%;
+    text-align:center;
     background:var(--gray);
 }
 
-.newsletter h2{
-    margin-bottom:20px;
-}
-
 .newsletter form{
-    max-width:600px;
+    max-width:650px;
     margin:auto;
     display:flex;
     gap:10px;
+    margin-top:20px;
 }
 
 .newsletter input{
     flex:1;
     padding:15px;
     border:none;
-    border-radius:8px;
+    border-radius:10px;
 }
 
 .newsletter button{
@@ -494,7 +570,7 @@ nav a:hover{
     background:var(--primary);
     color:#fff;
     padding:15px 25px;
-    border-radius:8px;
+    border-radius:10px;
     cursor:pointer;
 }
 
@@ -512,12 +588,13 @@ nav a:hover{
 }
 
 #contact input,
-#contact textarea{
+#contact textarea,
+.checkout-content input{
     width:100%;
     padding:15px;
-    border:1px solid #ddd;
-    border-radius:8px;
     margin-bottom:15px;
+    border:1px solid #ddd;
+    border-radius:10px;
 }
 
 #contact textarea{
@@ -525,12 +602,14 @@ nav a:hover{
     resize:none;
 }
 
-#contact button{
+#contact button,
+.checkout-content button{
+    width:100%;
     border:none;
     background:var(--primary);
     color:#fff;
-    padding:15px 25px;
-    border-radius:8px;
+    padding:15px;
+    border-radius:10px;
     cursor:pointer;
 }
 
@@ -540,19 +619,21 @@ nav a:hover{
 
 #toast{
     position:fixed;
-    bottom:30px;
     right:30px;
+    bottom:30px;
     background:var(--primary);
     color:#fff;
     padding:15px 25px;
-    border-radius:8px;
+    border-radius:10px;
     opacity:0;
+    transform:translateY(20px);
     transition:.4s;
-    z-index:5000;
+    z-index:9999;
 }
 
 #toast.show{
     opacity:1;
+    transform:translateY(0);
 }
 
 /* =========================
@@ -563,8 +644,8 @@ nav a:hover{
     position:fixed;
     right:25px;
     bottom:25px;
-    width:50px;
-    height:50px;
+    width:55px;
+    height:55px;
     border:none;
     border-radius:50%;
     background:var(--primary);
@@ -581,7 +662,17 @@ footer{
     background:#111827;
     color:#fff;
     text-align:center;
-    padding:40px 20px;
+    padding:50px 20px;
+}
+
+.footer-links{
+    margin:20px 0;
+}
+
+.footer-links a{
+    color:#fff;
+    margin:0 10px;
+    text-decoration:none;
 }
 
 .socials{
@@ -590,13 +681,12 @@ footer{
 
 .socials i{
     margin:0 10px;
-    font-size:20px;
+    font-size:22px;
     cursor:pointer;
 }
 
 .copyright{
-    margin-top:20px;
-    font-size:14px;
+    margin-top:25px;
 }
 
 /* =========================
@@ -607,7 +697,7 @@ footer{
 
     nav{
         position:absolute;
-        top:70px;
+        top:75px;
         left:-100%;
         width:100%;
         background:#fff;
@@ -640,5 +730,9 @@ footer{
     .cart-sidebar,
     .wishlist-sidebar{
         width:100%;
+    }
+
+    .countdown{
+        gap:10px;
     }
 }
